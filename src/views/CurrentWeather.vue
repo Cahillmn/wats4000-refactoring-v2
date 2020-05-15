@@ -16,6 +16,9 @@
 
 <script>
 import {API} from '@/common/api';
+import WeatherSummary from '@/views/WeatherSummary';
+import WeatherConditions from '@/views/WeatherConditions';
+import ErrorList from '@/views/ErrorList';
 
 export default {
   name: 'CurrentWeather',
@@ -28,17 +31,21 @@ export default {
   },
   created () {
     API.get('weather', {
-        params: {
-            id: this.$route.params.cityId
-        }
-      })
- 
+      params: {
+          id: this.$route.params.cityId
+      }
+    })
     .then(response => {
       this.weatherData = response.data
     })
     .catch(error => {
       this.errors.push(error)
     });
+  },
+  components: {
+    'weather-summary': WeatherSummary,
+    'weather-conditions': WeatherConditions,
+    'error-list': ErrorList
   }
 }
 </script>

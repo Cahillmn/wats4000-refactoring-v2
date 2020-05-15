@@ -27,32 +27,41 @@
 
 <script>
 import { API } from "@/common/api";
+import WeatherSummary from '@/views/WeatherSummary';
+import WeatherConditions from '@/views/WeatherConditions';
+import ErrorList from '@/views/ErrorList';
+
 
 export default {
-  name: "CitySearch",
-  data() {
+  name: 'CitySearch',
+  data () {
     return {
       results: null,
       errors: [],
-      query: ""
-    };
+      query: ''
+    }
   },
   methods: {
-    getCities: function() {
-      API.get("find", {
+    getCities: function () {
+      API.get('find', {
         params: {
-          q: this.query
+            q: this.query
         }
       })
-        .then(response => {
-          this.results = response.data;
-        })
-        .catch(error => {
-          this.errors.push(error);
-        });
+      .then(response => {
+        this.results = response.data
+      })
+      .catch(error => {
+        this.errors.push(error)
+      });
     }
+  },
+  components: {
+    'weather-summary': WeatherSummary,
+    'weather-conditions': WeatherConditions,
+    'error-list': ErrorList
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

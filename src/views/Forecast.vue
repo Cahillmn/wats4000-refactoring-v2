@@ -19,6 +19,9 @@
 
 <script>
 import {API} from '@/common/api';
+import WeatherSummary from '@/views/WeatherSummary';
+import WeatherConditions from '@/views/WeatherConditions';
+import ErrorList from '@/views/ErrorList';
 
 export default {
   name: 'Forecast',
@@ -60,13 +63,16 @@ export default {
       } else if (hour < 12) {
         hour = hour + 'AM';
       }
-      
       return `${ months[month] } ${ daynum } @ ${ hour }`;
     }
+  },
+  components: {
+    'weather-summary': WeatherSummary,
+    'weather-conditions': WeatherConditions,
+    'error-list': ErrorList
   }
 }
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .errors li {
