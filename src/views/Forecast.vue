@@ -9,10 +9,13 @@
     <ul v-if="weatherData && errors.length===0" class="forecast">
       <li v-for="(forecast,index) in weatherData.list" :key="index">
         <h3>{{ forecast.dt|formatDate }}</h3>
+        <!-- Call child component to display WeatherSummary -->
         <weather-summary v-bind:weatherData="forecast.weather"></weather-summary>
+        <!-- Call child component for WeatherConditions -->
         <weather-conditions v-bind:conditions="forecast.main"></weather-conditions>
       </li>
     </ul>
+    <!-- Call child component to display ErrorList when error exists -->
     <error-list v-bind:errorList="errors"></error-list>
   </div>
 </template>

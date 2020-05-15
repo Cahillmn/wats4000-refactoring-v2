@@ -6,10 +6,12 @@
       <router-link v-bind:to="{ name: 'Forecast', params: { cityId: $route.params.cityId } }">View 5-Day Forecast</router-link>
     </p>
     <div v-if="weatherData && errors.length===0">
-
+      <!-- Call child component to display WeatherSummary -->
       <weather-summary v-bind:weatherData="weatherData.weather"></weather-summary>
+      <!-- Call child component for WeatherConditions -->
       <weather-conditions v-bind:conditions="weatherData.main"></weather-conditions>
     </div>
+    <!-- Call child component to display ErrorList when error exists -->
     <error-list v-bind:errorList="errors"></error-list>
   </div>
 </template>

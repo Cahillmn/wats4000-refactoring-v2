@@ -16,11 +16,13 @@
             v-bind:to="{ name: 'CurrentWeather', params: { cityId: city.id } }"
           >View Current Weather</router-link>
         </p>
-
+        <!-- Call child component to display WeatherSummary -->
         <weather-summary v-bind:weatherData="city.weather"></weather-summary>
+        <!-- Call child component for WeatherConditions -->
         <weather-conditions v-bind:conditions="city.main"></weather-conditions>
       </li>
     </ul>
+    <!-- Call child component to display ErrorList when error exists -->
     <error-list v-bind:errorList="errors"></error-list>
   </div>
 </template>
